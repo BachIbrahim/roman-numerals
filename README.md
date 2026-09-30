@@ -22,3 +22,10 @@ Converts an integer from 1 to 3999 inclusive to its Roman numeral representation
 ### `fromRoman(roman: string): number`
 
 Parses an uppercase Roman numeral string and returns its integer value. Accepts the conventional subtractive forms (`IV`, `IX`, `XL`, `XC`, `CD`, `CM`). Throws `RangeError` if the input is empty, contains invalid characters, repeats a symbol more than three times (or repeats `V`, `L`, or `D` at all), or uses an invalid subtractive pair such as `IL`.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
